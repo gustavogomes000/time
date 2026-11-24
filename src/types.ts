@@ -12,7 +12,57 @@ export type FilterMode =
   | "monthly"
   | "overdue";
 
-export type NavTab = "overview" | "agenda" | "conferences" | "whatsapp";
+export type NavTab =
+  | "overview"
+  | "agenda"
+  | "conferences"
+  | "notes"
+  | "whatsapp";
+
+export type NoteBlockType =
+  | "paragraph"
+  | "heading"
+  | "todo"
+  | "callout"
+  | "divider"
+  | "image"
+  | "video";
+
+export interface NoteBlock {
+  id: string;
+  type: NoteBlockType;
+  text?: string;
+  checked?: boolean;
+  url?: string;
+  mediaId?: string;
+  caption?: string;
+  fileName?: string;
+}
+
+export interface NoteFolder {
+  id: string;
+  parent_id: string | null;
+  name: string;
+  icon: string;
+  color: string;
+  position: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface NoteItem {
+  id: string;
+  folder_id: string | null;
+  title: string;
+  icon: string;
+  cover_color: string;
+  pinned: boolean;
+  tags: string[];
+  content: string;
+  blocks: NoteBlock[];
+  created_at: string;
+  updated_at: string;
+}
 
 export interface Task {
   id: string;

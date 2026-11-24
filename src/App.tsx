@@ -3,6 +3,7 @@ import {
   LayoutGrid,
   Calendar,
   ClipboardCheck,
+  FolderKanban,
   MessageSquare,
   Download,
   RefreshCw,
@@ -27,6 +28,7 @@ import {
 import { TodayYesterdayView } from "./components/TodayYesterdayView";
 import { DayAgendaView } from "./components/DayAgendaView";
 import { ConferencesView } from "./components/ConferencesView";
+import { NotionNotesView } from "./components/NotionNotesView";
 import { WhatsAppRemindersView } from "./components/WhatsAppRemindersView";
 import { CreateTaskModal } from "./components/CreateTaskModal";
 
@@ -301,9 +303,15 @@ export function App() {
     {
       id: "conferences",
       label: "Conferências",
-      shortLabel: "Conferências",
+      shortLabel: "Confer.",
       icon: ClipboardCheck,
       badge: pendingConfCount > 0 ? pendingConfCount : undefined,
+    },
+    {
+      id: "notes",
+      label: "Notas & Cards",
+      shortLabel: "Notas",
+      icon: FolderKanban,
     },
     {
       id: "whatsapp",
@@ -497,6 +505,8 @@ export function App() {
             onDeleteTask={handleDeleteTask}
             onQuickRemind={handleQuickRemind}
           />
+        ) : activeTab === "notes" ? (
+          <NotionNotesView onNotifyToast={notifyToast} />
         ) : (
           <WhatsAppRemindersView
             tasks={tasks}
@@ -513,27 +523,29 @@ export function App() {
       </main>
 
       {/* Mobile Floating Action Button + Bottom Navigation */}
-      <button
-        id="fab-mobile-new-task"
-        type="button"
-        onClick={() =>
-          handleOpenCreate(
-            activeTab === "conferences" ? "conference" : "daily",
-            activeTab === "conferences" ? "weekly" : "none",
-            activeTab === "agenda" ? selectedAgendaDate : todayYmd
-          )
-        }
-        aria-label="Nova demanda"
-        className="md:hidden fixed bottom-20 right-4 z-30 flex h-13 w-13 items-center justify-center rounded-2xl bg-sky-500 p-3.5 text-white shadow-elevated active:scale-95 transition-transform"
-      >
-        <Plus className="h-6 w-6 stroke-[2.5]" />
-      </button>
+      {activeTab !== "notes" && (
+        <button
+          id="fab-mobile-new-task"
+          type="button"
+          onClick={() =>
+            handleOpenCreate(
+              activeTab === "conferences" ? "conference" : "daily",
+              activeTab === "conferences" ? "weekly" : "none",
+              activeTab === "agenda" ? selectedAgendaDate : todayYmd
+            )
+          }
+          aria-label="Nova demanda"
+          className="md:hidden fixed bottom-20 right-4 z-30 flex h-13 w-13 items-center justify-center rounded-2xl bg-sky-500 p-3.5 text-white shadow-elevated active:scale-95 transition-transform"
+        >
+          <Plus className="h-6 w-6 stroke-[2.5]" />
+        </button>
+      )}
 
       <nav
         aria-label="Navegação mobile"
         className="md:hidden fixed bottom-0 inset-x-0 z-30 border-t border-slate-200 bg-white/95 backdrop-blur-md pb-safe"
       >
-        <div className="grid grid-cols-4 px-2 pt-1.5">
+        <div className="grid grid-cols-5 px-1 pt-1.5">
           {navItems.map((item) => {
             const Icon = item.icon;
             const active = activeTab === item.id;

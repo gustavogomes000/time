@@ -5,6 +5,8 @@ import tasksHandler from "./api/tasks.ts";
 import remindersHandler from "./api/reminders.ts";
 import settingsHandler from "./api/settings.ts";
 import sendWhatsappHandler from "./api/send-whatsapp.ts";
+import notesHandler from "./api/notes.ts";
+import mediaHandler from "./api/media.ts";
 
 function localApiPlugin(): Plugin {
   return {
@@ -26,6 +28,14 @@ function localApiPlugin(): Plugin {
         }
         if (pathname === "/api/send-whatsapp") {
           await sendWhatsappHandler(req, res);
+          return;
+        }
+        if (pathname === "/api/notes") {
+          await notesHandler(req, res);
+          return;
+        }
+        if (pathname === "/api/media") {
+          await mediaHandler(req, res);
           return;
         }
         next();
