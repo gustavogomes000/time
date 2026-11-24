@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --canvas: 206 67% 98%;
+    --surface: 0 0% 100%;
+    --primary: 199 89% 48%;
+    --primary-dark: 200 98% 39%;
+  }
+
+  html {
+    font-family: "Plus Jakarta Sans", Inter, system-ui, -apple-system, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #f4f9fd;
+    color: #0f172a;
+    min-height: 100dvh;
+  }
+}
+
+/* Custom subtle scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(14, 165, 233, 0.45);
+}
+
+/* Safe area padding for installed mobile PWA */
+.pb-safe {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}

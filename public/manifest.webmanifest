@@ -1,0 +1,27 @@
+{
+  "name": "Demanda do Gustavo",
+  "short_name": "Demandas",
+  "description": "Controle diário de demandas, conferências semanais/quinzenais/mensais e avisos automáticos via WhatsApp.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F4F9FD",
+  "theme_color": "#0EA5E9",
+  "lang": "pt-BR",
+  "categories": ["productivity", "business", "utilities"],
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
