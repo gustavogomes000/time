@@ -347,7 +347,7 @@ export function App() {
           {/* Desktop Nav */}
           <nav
             aria-label="Navegação principal"
-            className="hidden md:flex items-center gap-1 rounded-2xl bg-sky-50/80 p-1 border border-sky-100"
+            className="hidden md:flex items-center gap-1 rounded-2xl bg-sky-50/80 p-1 border border-sky-100 overflow-x-auto max-w-full"
           >
             {navItems.map((item) => {
               const Icon = item.icon;
@@ -358,13 +358,13 @@ export function App() {
                   id={`nav-desktop-${item.id}`}
                   type="button"
                   onClick={() => setActiveTab(item.id)}
-                  className={`inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-bold transition-all ${
+                  className={`shrink-0 inline-flex items-center gap-1.5 rounded-xl px-2.5 lg:px-3.5 py-2 text-xs font-bold transition-all ${
                     active
                       ? "bg-sky-500 text-white shadow-sm"
                       : "text-slate-600 hover:bg-white hover:text-sky-700"
                   }`}
                 >
-                  <Icon className="h-4 w-4" />
+                  <Icon className="h-4 w-4 shrink-0" />
                   <span>{item.label}</span>
                   {item.badge !== undefined && (
                     <span
